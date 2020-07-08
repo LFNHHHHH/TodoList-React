@@ -1,5 +1,6 @@
-import React from 'react';
-import app from './App.module.css';
+import React from 'react'
+import Dbitem from './components/dbitem/dbitem'
+import Wcitem from './components/wcitem/wcitem'
 
 class App extends React.Component {
   constructor() {
@@ -32,32 +33,10 @@ class App extends React.Component {
             <div className="flexfs jcsa w50 mt40 ml50">
 
               {/* 待办 */}
-              <div className={app.minw200}>
-                {
-                  this.state.itemList.map((item, index) => {
-                    return (
-                      <div key={index} className="mt20 fs12 flexc w100">
-                        <div className="mr20">待完成</div>
-                        <div onClick={this.handleDelItemClick} className={[app.shou, 'flexcc', 'shenhui'].join(' ')}>{item}</div>
-                      </div>
-                    )
-                  })
-                }
-              </div>
+              <Dbitem itemlist={ this.state.itemList }></Dbitem>
 
               {/* 已完成 */}
-              <div className={['minh900', 'ml50', app.minw200].join(' ')}>
-                {
-                  this.state.delItemList.map((item, index) => {
-                    return (
-                      <div key={index} className={['flexcfs', app.shou, 'fs12', 'shenhui', 'w100', 'mt20'].join(' ')}>
-                        <div className="mr20">已完成</div>
-                        <div onClick={this.handleRemoveItem} className={app.huadiao}>{item}</div>
-                      </div>
-                    )
-                  })
-                }
-              </div>
+              <Wcitem wclist={ this.state.delItemList }></Wcitem>
 
             </div>
 
@@ -69,6 +48,7 @@ class App extends React.Component {
       </div>
     )
   }
+
   componentDidMount() {  // 生命周期
     this.getData()
   }
