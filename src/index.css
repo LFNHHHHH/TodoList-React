@@ -1,13 +1,82 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* 适配苹果IPhoneX系列 */
+.bottom-box {width: 100%; height: 96px; background-color: #fff; position: fixed; bottom: 0; box-shadow:0px -4px 8px 0px rgba(147,108,50,0.15);}
+.fix-iphonex-button {bottom: 68px !important;}
+.fix-iphonex-button::after {content: ' ';position: fixed;bottom: 0 !important;height: 68px !important;width: 100%;background: #fff;}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* flex */
+.flex1 {flex: 1}
+.flex {display: flex;}
+.warp {flex-wrap: wrap;}
+.col {flex-direction: column;}
+.aife {align-items: flex-end;}
+.jcc {justify-content: center;}
+.jcfe {justify-content: flex-end;}
+.jcsa {justify-content: space-around;}
+.sb {justify-content: space-between;}
+.flexc {display: flex;align-items: center;}
+.flexfs {display: flex;align-items: flex-start;}
+.flexfe {display: flex;align-items: flex-end;}
+.flexcc {display: flex;align-items: center;justify-content: center;}
+.flexcsb {display: flex;align-items: center;justify-content: space-between;}
+.flexcfs {display: flex;align-items: center;justify-content: flex-start;}
+.flexcfe {display: flex;align-items: center;justify-content: flex-end;}
+
+/* position */
+.psrela {position: relative;}
+.psabso {position: absolute;}
+.psfix {position: fixed;}
+.tac {text-align: center;}
+.tar {text-align: right;}
+.bsbb {box-sizing: border-box;}
+
+/* overflow、sizing */
+.ofh {overflow: hidden;}
+.bsbb {box-sizing: border-box;}
+
+/* margin */
+.mt20 {margin-top: 20px;}
+.mt40 {margin-top: 40px;}
+.mr20 {margin-right: 20px;}
+.ml50 {margin-left: 50px;}
+
+/* padding */
+
+
+/* font-size */
+.fs64 {font-size: 64px;}
+.fs48 {font-size: 48px;}
+.fs46 {font-size: 46px;}
+.fs40 {font-size: 40px;}
+.fs32 {font-size: 32px;}
+.fs28 {font-size: 28px;}
+.fs24 {font-size: 24px;}
+.fs22 {font-size: 22px;}
+.fs20 {font-size: 20px;}
+.fs16 {font-size: 16px;}
+.fs14 {font-size: 14px;}
+.fs12 {font-size: 12px;}
+.fs10 {font-size: 10px;}
+
+/* font-weight */
+
+
+/* line-height */
+
+
+/* width */
+.w100 {width: 100%;}
+.w80 {width: 80%;}
+.w50 {width: 50%;}
+.w33 {width: 33.333%;}
+.w25 {width: 25%;}
+.h100 {height: 100%;}
+
+/* color */
+.clhui {color: #ABABAB;}
+.clcheng {color: #FF6225}
+.clbai {color: #fff;}
+.shenhui {color: #575757;}
+.backcolbai {background-color: #fff;}
+
+/* 自定义 */
+

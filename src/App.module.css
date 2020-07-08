@@ -1,0 +1,15 @@
+.mt41 {
+    margin-top: 41px;
+}
+
+.shou:hover {
+    cursor: pointer;
+}
+
+.huadiao {
+    text-decoration: line-through;
+}
+
+.minw200 {
+    min-width: 200px;
+}
