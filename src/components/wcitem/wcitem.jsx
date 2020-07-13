@@ -15,13 +15,17 @@ class DbItem extends React.Component{
             return (
               <div key={index} className={['flexcfs', app.shou, 'fs12', 'shenhui', 'w100', 'mt20'].join(' ')}>
                 <div className="mr20">已完成</div>
-                <div onClick={this.handleRemoveItem} className={app.huadiao}>{item}</div>
+                <div onClick={() => this.handleRemoveItem2(index, item) } className={app.huadiao}>{item}</div>
               </div>
             )
           })
         }
       </div>
     )
+  }
+
+  handleRemoveItem2(index, item) {
+    this.props.removeItem(index, item)
   }
 }
 

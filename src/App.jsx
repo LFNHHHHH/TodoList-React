@@ -33,10 +33,10 @@ class App extends React.Component {
             <div className="flexfs jcsa w50 mt40 ml50">
 
               {/* 待办 */}
-              <Dbitem itemlist={ this.state.itemList }></Dbitem>
+              <Dbitem itemlist={ this.state.itemList } delItem={ this.handleDelItemClick } />
 
               {/* 已完成 */}
-              <Wcitem wclist={ this.state.delItemList }></Wcitem>
+              <Wcitem wclist={ this.state.delItemList } removeItem={ this.handleRemoveItem } />
 
             </div>
 
@@ -77,11 +77,7 @@ class App extends React.Component {
     if (e.keyCode !== 13) return
     this.handleAddClick()
   }
-  handleDelItemClick(e) {  // delItem
-    let item = e.target.innerHTML.trim()
-    let index = this.state.itemList.findIndex(item2 => {
-      return item2 === item
-    })
+  handleDelItemClick(index, item) {  // delItem
     let itemList2 = this.state.itemList
     itemList2.splice(index, 1)
     this.setState({
@@ -97,11 +93,7 @@ class App extends React.Component {
     window.localStorage.setItem('itemList', JSON.stringify(this.state.itemList))
     window.localStorage.setItem('delItemList', JSON.stringify(this.state.delItemList))
   }
-  handleRemoveItem(e) {  // removeItem
-    let item = e.target.innerHTML.trim()
-    let index = this.state.delItemList.findIndex(item2 => {
-      return item2 === item
-    })
+  handleRemoveItem(index, item) {  // removeItem
     let delItemList2 = this.state.delItemList
     delItemList2.splice(index, 1)
     this.setState({
