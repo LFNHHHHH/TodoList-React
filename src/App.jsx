@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import Dbitem from './components/dbitem/dbitem'
 import Wcitem from './components/wcitem/wcitem'
+import store from './store/index'
+import { getInputChangeAction, getAddTodoItem, delItem, removeItem, getStorageData } from './store/actionCreators'
 
 class App extends Component {
   constructor() {
     super()
-    this.state = {
-      inputValue: '',
-      itemList: [],
-      delItemList: []
-    }
+    this.state = store.getState()
+    store.subscribe(()=>{this.handleStoreChange()})  // 当 store 数据发生变化时调用该函数
+
     this.handleAddClick = this.handleAddClick.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleDelItemClick = this.handleDelItemClick.bind(this)
@@ -64,63 +64,28 @@ class App extends Component {
   }
 
   getData() {  // 从 localStorage 获取缓存的数据
-    this.setState(() => ({
-      itemList: JSON.parse(window.localStorage.getItem('itemList')) ? JSON.parse(window.localStorage.getItem('itemList')) : [],
-      delItemList: JSON.parse(window.localStorage.getItem('delItemList')) ? JSON.parse(window.localStorage.getItem('delItemList')) : []
-    }))
+    store.dispatch(getStorageData())
+  }
+  handleStoreChange = ()=>{  // 当 store 中数据改变时
+    this.setState(store.getState())  // 重新获取 store 中的数据
   }
   handleInputChange(e) {  // input 双向同步
-    const value = e.target.value
-    this.setState(() => ({
-      inputValue: value
-    }))
+    store.dispatch(getInputChangeAction(e.target.value))  // 通过 action 将数据传给 store ， store 会自动把数据交给 reducer
   }
   handleAddClick() {  // add
-    this.setState((prevState) => {
-      let { inputValue } = this.state
-      let itemList2 = [inputValue, ...prevState.itemList]
-      return ({
-        itemList: itemList2,
-        inputValue: ''
-      })
-    }, () => window.localStorage.setItem('itemList', JSON.stringify(this.state.itemList)))
+    let { inputValue } = this.state
+    if (inputValue.trim() === '') return
+    store.dispatch(getAddTodoItem(inputValue))
   }
   handleEnter(e) {  // enter
     if (e.keyCode !== 13) return
     this.handleAddClick()
   }
   handleDelItemClick(index, item) {  // delItem
-    this.setState((prevState) => {
-      let itemList2 = [...prevState.itemList] // 深拷贝
-      itemList2.splice(index, 1)
-
-      let delItemList2 = [item, ...prevState.delItemList]
-
-      return ({
-        itemList: itemList2,
-        delItemList: delItemList2
-      })
-
-    }, () => {
-      window.localStorage.setItem('itemList', JSON.stringify(this.state.itemList))
-      window.localStorage.setItem('delItemList', JSON.stringify(this.state.delItemList))
-    })
+    store.dispatch(delItem(index, item))
   }
   handleRemoveItem(index, item) {  // removeItem
-    this.setState((prevState) => {
-      let delItemList2 = [...prevState.delItemList]
-      delItemList2.splice(index, 1)
-
-      let itemList2 = [item, ...prevState.itemList]
-
-      return ({
-        delItemList: delItemList2,
-        itemList: itemList2
-      })
-    }, () => {
-      window.localStorage.setItem('itemList', JSON.stringify(this.state.itemList))
-      window.localStorage.setItem('delItemList', JSON.stringify(this.state.delItemList))
-    })
+    store.dispatch(removeItem(index, item))
   }
 
 }
