@@ -1,6 +1,6 @@
 import { INPUT_VALUE_CHANGE, ADD_TODO_ITEM, DEL_DB_ITEM, REMOVE_WC_ITEM, GET_STORAGE_DATA } from './actionTypes'
 const defaultState = {
-  inputValue: '',
+  inputValue: 'hahaha',
   itemList: [],
   delItemList: []
 }
@@ -8,6 +8,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case GET_STORAGE_DATA: // 获取本地数据
+      console.log('3')
       state.itemList = JSON.parse(window.localStorage.getItem('itemList')) ? JSON.parse(window.localStorage.getItem('itemList')) : []
       state.delItemList = JSON.parse(window.localStorage.getItem('delItemList')) ? JSON.parse(window.localStorage.getItem('delItemList')) : []
       console.log(state)
