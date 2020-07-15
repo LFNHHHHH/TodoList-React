@@ -19,7 +19,6 @@ export default (state = defaultState, action) => {
       return newState2
 
     case ADD_TODO_ITEM: // 添加项目
-      console.log('000')
       let newState3 = {...state}
       newState3.itemList = [action.inputValue, ...state.itemList]
       newState3.inputValue = ''

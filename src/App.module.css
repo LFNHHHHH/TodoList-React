@@ -13,3 +13,6 @@
 .minw200 {
     min-width: 200px;
 }
+
+.routeSty {width: 200px; margin-top: 20px;}
+.routeSty a{font-size: 12px; color: #000; text-decoration: none;}
