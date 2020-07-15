@@ -28,13 +28,13 @@ class App extends Component {
             <div className="mt20 flexcc">
               <input
                 onChange={this.props.handleInputChange}
-                onKeyUp={this.handleEnter}
+                onKeyUp={this.props.handleEnter}
                 value={this.props.inputValue}
                 placeholder="Todo"
                 type="text"
                 className="mr20"
               />
-              <button onClick={this.handleAddClick} >add</button>
+              <button onClick={this.props.handleAddClick} >add</button>
             </div>
 
             <div className="flexfs jcsa w50 mt40 ml50">
@@ -57,10 +57,7 @@ class App extends Component {
   }
 
   componentDidMount() {  // 生命周期
-    console.log('1')
-    console.log(this.props)
     this.props.getData()
-    console.log('2')
   }
 }
 
@@ -85,7 +82,8 @@ const mapDispatchToProps = (dispatch)=>{
         dispatch(getStorageData())
       },
       handleAddClick() {  // add
-        let { inputValue } = this.props
+        console.log('111')
+        let inputValue = this.props.inputValue
         if (inputValue.trim() === '') return
         dispatch(getAddTodoItem(inputValue))
       },
